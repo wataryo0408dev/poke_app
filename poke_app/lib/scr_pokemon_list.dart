@@ -1,8 +1,9 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/retry.dart';
 import 'package:poke_app/poke_api.dart';
+import 'package:poke_app/scr_pokemon_detail.dart';
+
 import 'package:http/http.dart' as http;
 
 class ScrPokemonList extends StatelessWidget{
@@ -49,7 +50,16 @@ Future<List<Pokemon>> getPokemonList() async{
                 return ListTile(
                   leading: Image.network(pokemon.imageUrl),
                   title: Text(pokemon.name),
+                  subtitle: Text("No.${pokemon.id.toString()}"),
                   trailing: const Icon(Icons.arrow_forward),
+
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ScrPokemonDetail(),)
+
+                    );
+                  },
                 );
               },
             );
