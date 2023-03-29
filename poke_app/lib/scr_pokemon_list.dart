@@ -5,11 +5,7 @@ import 'package:http/retry.dart';
 import 'package:poke_app/poke_api.dart';
 import 'package:http/http.dart' as http;
 
-class ScrPokemonList extends StatefulWidget{
-  @override
-  ScrPokemonListState createState() => ScrPokemonListState();
-}
-class ScrPokemonListState extends State<ScrPokemonList>{
+class ScrPokemonList extends StatelessWidget{
 
   Future<Map<String, dynamic>> getPokemonSpecies(String url) async{
     final response = await http.get(Uri.parse(url));
@@ -17,7 +13,7 @@ class ScrPokemonListState extends State<ScrPokemonList>{
   }
 
 Future<List<Pokemon>> getPokemonList() async{
-  final response = await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon?limit=151'));
+  final response = await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon?limit=3'));
   final pokemonListJson = jsonDecode(response.body)['results'] as List<dynamic>;
   final pokemonList = <Pokemon>[];
   for (final pokemon in pokemonListJson) {
