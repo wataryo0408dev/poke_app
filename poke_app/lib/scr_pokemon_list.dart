@@ -38,6 +38,7 @@ Future<List<Pokemon>> getPokemonList() async{
     return Scaffold(
       appBar: AppBar(
         title: const Text('ポケモンリスト'),
+        
       ),
       body: FutureBuilder<List<Pokemon>>(
         future: getPokemonList(),
@@ -56,14 +57,15 @@ Future<List<Pokemon>> getPokemonList() async{
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ScrPokemonDetail(),)
+                      MaterialPageRoute(builder: (context) => ScrPokemonDetail(pokemon: pokemon))
 
                     );
                   },
                 );
               },
             );
-          }else{
+          }
+          else{
             return Center(
               // child: CircularProgressIndicator(),
               child: Column(
